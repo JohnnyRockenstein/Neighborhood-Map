@@ -1,0 +1,51 @@
+[
+{
+	"name": "Polo Park",
+	"lat": 49.8866486,
+	"long": -97.1992166,
+	"category": "Mall"
+},
+{
+	"name": "Canadian Tire",
+	"lat": 49.8863201,
+	"long": -97.20265660000001,
+	"category": "Retail"
+},
+{
+	"name": "Yellow Dog Tavern",
+	"lat": 49.896226,
+	"long": -97.14416849999998,
+	"category": "Bar"
+},
+{
+	"name": "Earls Kitchen + Bar",
+	"lat": 49.82877999999999,
+	"long": -97.11403999999999,
+	"category": "Food"
+},
+{
+	"name": "Marcello's Market & Deli",
+	"lat": 49.8959979,
+	"long": -97.13791730000003,
+	"category": "Butcher"
+
+},
+{
+	"name": "Sport Chek",
+	"lat": 49.8296561,
+	"long": -97.10958979999998,
+	"category": "Retail"
+},
+{
+	"name": "Bridge Drive In",
+	"lat": 49.8553475,
+	"long": -97.14247180000001,
+	"category": "Food"
+},
+{
+	"name": "Long & Mcquade",
+	"lat": 49.8577527,
+	"long": -97.15358850000001,
+	"category": "Musical Instruments"
+}
+]

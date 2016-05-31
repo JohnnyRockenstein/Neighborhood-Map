@@ -1,0 +1,134 @@
+html,
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    font: 16px/26px Helvetica, Helvetica Neue, Arial;
+}
+
+.activeMapListPoint {
+    color: green;
+}
+
+.hoveredMapListLocation {
+    color: black;
+    font-size: 1.3em;
+}
+
+.hoveredactiveMapListPoint {
+    color: green;
+    font-size: 1.2em;
+}
+
+#map {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+#panoramaContent {
+    width: 100%;
+    height: 200px;
+}
+
+#searchbar {
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 12px;
+    max-width: 300px;
+    min-width: 320px;
+    margin: 2% 2% 2% 2%;
+    position: absolute;
+    width: 95%;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+#searchbox {
+    margin: 0px;
+    background-color: #fff;
+    padding: 0 11px 0 13px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#searchbox:focus {
+    border-color: #4d90fe;
+    margin-left: -1px;
+    padding-left: 14px;
+    width: 401px;
+}
+
+.optionCheck span {
+    vertical-align: middle;
+}
+
+.optionCheck input {
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+#pointList {
+    background: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#listController {
+    margin: 0;
+    text-align: center;
+    padding: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#nextPage {
+    border: 1px rgba(0, 0, 0, 0.1);
+    padding: 0;
+    float: right;
+    width: 16%;
+    margin: 0;
+    border-left-style: solid;
+}
+
+#previousPage {
+    border: 1px rgba(0, 0, 0, 0.1);
+    width: 16%;
+    padding: 0;
+    float: left;
+    margin: 0;
+    border-right-style: solid;
+}
+
+#pageNumbers {
+    margin: 0;
+    width: 67%;
+    display: inline-block;
+    padding: 0;
+}
+
+#listRollup {
+    border: 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+    height: 16px;
+    padding: 0;
+    border-top-style: solid;
+}
+
+#rollImg {
+    position: absolute;
+    width: 16px;
+    top: 0;
+    left: 48%;
+    bottom: 0;
+    margin: auto;
+}
