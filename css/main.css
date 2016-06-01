@@ -6,6 +6,10 @@ body {
     font: 16px/26px Helvetica, Helvetica Neue, Arial;
 }
 
+li {
+    cursor: pointer;
+}
+
 .activeMapListPoint {
     color: green;
 }
