@@ -24,7 +24,7 @@ var viewModel = function(map) {
     /* setting max width fixes nonsense autosizing issues with
      * whitespace wrapping in the infowindow constructor
      */
-    self.infoMaxWidth = Math.min(400, $(window).width() * .8);
+    self.infoMaxWidth = Math.min(400, $(window).width() * 0.8);
 
     /* Aligns the map canvas to bottom center */
     self.centerToPoint = function(point, offsetIt) {
@@ -37,7 +37,7 @@ var viewModel = function(map) {
             var positionY = pixPosition.y;
 
             if (!$(window).width() > 800) {
-                positionY = pixPosition.y - ($(window).height() * .45 / scale);
+                positionY = pixPosition.y - ($(window).height() * 0.45 / scale);
             }
 
             var pixPosNew = new google.maps.Point(
@@ -95,16 +95,16 @@ var viewModel = function(map) {
         } else {
             self.mouseOff(point);
         }
-    }
+    };
 
     /**
      * Opens a given Google Map information window
      */
     self.openWindow = function(storedContent, point) {
-        Googlemap.infowindow.setContent(storedContent);
-        Googlemap.infowindow.open(self.theMap.map, point.marker);
-        Googlemap.infowindow.isOpen = true;
-    }
+        googleMap.infowindow.setContent(storedContent);
+        googleMap.infowindow.open(self.theMap.map, point.marker);
+        googleMap.infowindow.isOpen = true;
+    };
 
     /**
      * Controls the CSS class assignments on the li's
@@ -242,10 +242,10 @@ var viewModel = function(map) {
     self.shownPoints.subscribe(function() {
         self.toggleMarkers();
         /* Closes info window if we apply a new filter */
-        if (Googlemap.infowindow.isOpen) {
-            Googlemap.infowindow.close();
-            Googlemap.infowindow.isOpen = false;
-            Googlemap.infoWindowClosed(self.shownPoints, self.toggleList);
+        if (googleMap.infowindow.isOpen) {
+            googleMap.infowindow.close();
+            googleMap.infowindow.isOpen = false;
+            googleMap.infoWindowClosed(self.shownPoints, self.toggleList);
         }
     });
 
@@ -260,7 +260,7 @@ var viewModel = function(map) {
             self.listPoint() - 1 + self.maxListNum());
     });
 
-    /* 
+    /*
      * Calculate total pages from the current max size of our list based on window size
      */
     self.totalPages = ko.computed(function() {
@@ -339,7 +339,7 @@ var viewModel = function(map) {
             thisPoint.marker.setVisible(false);
             thisPoint.hovered(false);
 
-            // Set icons for points 
+            // Set icons for points
             if (self.currentPoint() === thisPoint) {
                 thisPoint.marker.setIcon(thisPoint.activeIcon);
             } else {
@@ -357,20 +357,20 @@ var viewModel = function(map) {
 
         // refit map
         if (self.refitFilterCheck() === true) {
-            Googlemap.refitMap(self.shownPoints);
+            googleMap.refitMap(self.shownPoints);
         }
     };
 
 
-    Googlemap.init(self.shownPoints, self.toggleList);
+    googleMap.init(self.shownPoints, self.toggleList);
 
     // event to resize the map and list size when the browser window resizes
     $(window).resize(function() {
         self.maxListNum(Math.max(1, Math.ceil(($(window).height() - 150) / 30)));
         if (self.refitResizeCheck()) {
-            Googlemap.refitMap(self.shownPoints);
+            googleMap.refitMap(self.shownPoints);
         }
     });
 
-    Googlemap.refitMap(self.shownPoints);
+    googleMap.refitMap(self.shownPoints);
 };

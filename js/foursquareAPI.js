@@ -30,7 +30,7 @@
          $.getJSON(url)
              .done(function(response) {
 
-                 self.the4Sstring = '<p><b>Map Pin information</b><br>';
+                 self.the4Sstring = '<p><b>Map Pin information by Fouresquare</b><br>';
                  var venue = response.response.venues[0];
 
                  // venue id

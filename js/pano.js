@@ -18,7 +18,7 @@ var PanoObject = function(currentPoint) {
 
         if ($(window).width() <= 800) {
             if (skipContent !== true) {
-                Googlemap.infowindow.setContent(self.contentString(false));
+                googleMap.infowindow.setContent(self.contentString(false));
             }
 
             /* never check for pano image if the width is small */
@@ -27,7 +27,7 @@ var PanoObject = function(currentPoint) {
         }
         /* check for a Google streetview and use it */
 
-        Googlemap.streetViewService.getPanoramaByLocation(
+        googleMap.streetViewService.getPanoramaByLocation(
             viewModelData.currentPoint().marker.position, 80,
             function(streetViewPanoramaData, status) {
 
@@ -36,7 +36,7 @@ var PanoObject = function(currentPoint) {
                     /* if a street view is available */
 
                     if (skipContent !== true) {
-                        Googlemap.infowindow.setContent(self.contentString(true));
+                        googleMap.infowindow.setContent(self.contentString(true));
                     }
                     if (self.pano !== null) {
                         self.pano.unbind("position");
@@ -60,7 +60,7 @@ var PanoObject = function(currentPoint) {
                     /* if there is no street view available */
 
                     if (skipContent !== true) {
-                        Googlemap.infowindow.setContent(self.contentString(false));
+                        googleMap.infowindow.setContent(self.contentString(false));
                     }
                 }
             });
@@ -91,4 +91,4 @@ var PanoObject = function(currentPoint) {
 
         return retStr;
     };
-}
+};

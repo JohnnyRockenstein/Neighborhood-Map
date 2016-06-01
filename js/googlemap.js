@@ -3,47 +3,50 @@
  * It displays a loading string and then fills it in
  */
 
-var Googlemap = {
+var Googlemap = function(){
+    var self = this;
     /**
      * Default Google Map Bounds
      */
-    defaultBounds: new google.maps.LatLngBounds(
+    self.defaultBounds = new google.maps.LatLngBounds(
         new google.maps.LatLng(49.8866486, -97.1992166),
-        new google.maps.LatLng(49.8959979, -97.13791730000003)),
+        new google.maps.LatLng(49.8959979, -97.13791730000003));
 
     /**
      * Generates Google Map infomation window
      */
-    infowindow: new google.maps.InfoWindow({
+    self.infowindow = new google.maps.InfoWindow({
         content: '<div id="infoContent" class="scrollFix">Loading...</loding>',
         maxWidth: self.infoMaxWidth
-    }),
+    });
 
     /**
      * Cleanup infoWindow after close
      */
-    infoWindowClosed: function(shownPoints, toggleList) {
+    self.infoWindowClosed = function(shownPoints, toggleList) {
         panoObj.unbound();
 
         if ($(window).width() < 800) {
             toggleList(true);
         }
-        Googlemap.refitMap(shownPoints);
-    },
+        googleMap.refitMap(shownPoints);
+    };
 
     /**
      * Create new StreetViewService
      */
-    streetViewService: new google.maps.StreetViewService(),
+    self.streetViewService = new google.maps.StreetViewService();
 
     /**
      * Initialize Google Map services
      */
-    init: function(shownPoints, toggleList) {
+    self.init = function(shownPoints, toggleList) {
         var self = this;
-        theMap.map.fitBounds(this.defaultBounds);
 
-        google.maps.event.addListener(Googlemap.infowindow, 'closeclick', function() {
+        googleMap.DisplayError();
+        theMap.map.fitBounds(self.defaultBounds);
+
+        google.maps.event.addListener(self.infowindow, 'closeclick', function() {
             self.infoWindowClosed(shownPoints, toggleList);
         });
 
@@ -55,31 +58,45 @@ var Googlemap = {
         /*
          * On window Resize close information window on small window sizes
          */
-        google.maps.event.addDomListener(Googlemap.infowindow, 'domready', function() {
+        google.maps.event.addDomListener(self.infowindow, 'domready', function() {
             $('#infoContent').click(function() {
 
                 if ($(window).width() <= 800) {
-                    this.close(shownPoints, toggleList)
+                    self.close(shownPoints, toggleList);
                 }
             });
         });
-    },
+    };
+
+    /**
+     * Check if the google map api did not work. If there is no map, we will
+     * display an error message to the user.
+     */
+    self.DisplayError = function(){
+        // Error handling for google map api
+        if (typeof google !== 'object' || typeof google.maps !== 'object'){
+            console.log("error loading google maps api");
+            $('#searchbox').val("Error Loading Google Maps Api");
+            $('#searchbox').css({'background-color' : 'rgba(255,0,0,0.5)'});
+            return;
+        }
+    };
 
     /**
      * Close information window if it is open
      */
-    close: function(shownPoints, toggleList) {
-        if (Googlemap.infowindow.isOpen) {
-            Googlemap.infowindow.close();
-            Googlemap.infowindow.isOpen = false;
-            Googlemap.infoWindowClosed(shownPoints, toggleList);
+    self.close = function(shownPoints, toggleList) {
+        if (self.infowindow.isOpen) {
+            self.infowindow.close();
+            self.infowindow.isOpen = false;
+            self.infoWindowClosed(shownPoints, toggleList);
         }
     },
 
     /**
      * fit our map to show all of the currently visible markers at once
      */
-    refitMap: function(shownPoints) {
+    self.refitMap = function(shownPoints) {
         var bounds = new google.maps.LatLngBounds();
         var pointsLen = shownPoints().length;
 
@@ -89,5 +106,5 @@ var Googlemap = {
             }
             theMap.map.fitBounds(bounds);
         }
-    }
-}
+    };
+};

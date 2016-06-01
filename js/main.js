@@ -2,21 +2,28 @@
  * This file is the primary javascript for the neighboarhood map app
  */
 
-var theMap = new Map();
+var theMap, viewModelData, panoObj, foursquareInit, googleMap;
 
-var viewModelData = new viewModel(theMap);
+var init = function() {
+console.log('ballz');
+    theMap = new Map();
 
-var panoObj = new PanoObject(viewModelData.contentString, viewModelData.currentPoint);
+    googleMap = new Googlemap();
 
-var foursquareInit = new foursquareAPI(panoObj);
+    viewModelData = new viewModel(theMap);
+
+    panoObj = new PanoObject(viewModelData.contentString, viewModelData.currentPoint);
+
+    foursquareInit = new foursquareAPI(panoObj);
 
 
-/**
- * This executes when the DOM is loaded
- * Applies the KnockoutJS bindings from the View model,
- * Instantiates and begins logic setup
- */
+    /**
+     * This executes when the DOM is loaded
+     * Applies the KnockoutJS bindings from the View model,
+     * Instantiates and begins logic setup
+     */
 
-$(function() {
-    ko.applyBindings(viewModelData);
-});
+    $(function() {
+        ko.applyBindings(viewModelData);
+    });
+};
