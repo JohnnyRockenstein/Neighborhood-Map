@@ -5,7 +5,7 @@
 var theMap, viewModelData, panoObj, foursquareInit, googleMap;
 
 var init = function() {
-console.log('ballz');
+
     theMap = new Map();
 
     googleMap = new Googlemap();
